@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                   return ListView.builder(
                     padding: const EdgeInsets.all(10),
                     itemCount: state.data.length,
-                    itemBuilder: (_, i) {
+                    itemBuilder: (context, i) {
                       final user = state.data[i];
                       return Card(
                         shape: RoundedRectangleBorder(
