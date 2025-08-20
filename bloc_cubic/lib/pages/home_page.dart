@@ -50,7 +50,22 @@ class HomePage extends StatelessWidget {
                   );
                 }
                 if (state is Error) {
-                  return Center(child: Text(state.mensaje));
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(state.mensaje,
+                            style: const TextStyle(color: Colors.red)),
+                        const SizedBox(height: 12),
+                        ElevatedButton(
+                          onPressed: () {
+                            context.read<CubitCubit>().loadData();
+                          },
+                          child: const Text("Reintentar"),
+                        )
+                      ],
+                    ),
+                  );
                 }
                 return const Center(child: Text("Cubit esperando datos..."));
               },
@@ -92,7 +107,22 @@ class HomePage extends StatelessWidget {
                   );
                 }
                 if (state is BlocError) {
-                  return Center(child: Text(state.mensaje));
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(state.mensaje,
+                            style: const TextStyle(color: Colors.red)),
+                        const SizedBox(height: 12),
+                        ElevatedButton(
+                          onPressed: () {
+                            context.read<BlocBloc>().add(CargarDatosEvento());
+                          },
+                          child: const Text("Reintentar"),
+                        )
+                      ],
+                    ),
+                  );
                 }
                 return const Center(child: Text("Bloc esperando datos..."));
               },
