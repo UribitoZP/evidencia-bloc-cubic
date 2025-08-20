@@ -5,7 +5,7 @@ abstract class CubitState {}
 class Initial extends CubitState {}
 class Loading extends CubitState {}
 class Loaded extends CubitState {
-  final List<Modelo> data;
+  final List<UserModel> data;
   Loaded(this.data);
 }
 class Error extends CubitState {

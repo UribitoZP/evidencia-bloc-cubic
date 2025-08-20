@@ -1,13 +1,19 @@
-class Modelo {
+class UserModel {
   final int id;
   final String name;
+  final String email;
 
-  Modelo({required this.id, required this.name});
+  UserModel({
+    required this.id,
+    required this.name,
+    required this.email,
+  });
 
-  factory Modelo.fromJson(Map<String, dynamic> json) {
-    return Modelo(
-      id: json['id'],
-      name: json['name'],
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'] ?? 0,
+      name: json['name'] ?? "sin nombre",
+      email: json['email'] ?? "sin email",
     );
   }
 }

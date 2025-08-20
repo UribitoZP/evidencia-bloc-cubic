@@ -5,7 +5,7 @@ abstract class BlocState {}
 class BlocInitial extends BlocState {}
 class BlocLoading extends BlocState {}
 class BlocLoaded extends BlocState {
-  final List<Modelo> data;
+  final List<PostModel> data;
   BlocLoaded(this.data);
 }
 class BlocError extends BlocState {

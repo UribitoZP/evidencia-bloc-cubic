@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'cubit/cubit_cubit.dart';
 import 'bloc/bloc_bloc.dart';
-import 'services/api_service.dart';
+import 'cubit/cubit_cubit.dart';
 import 'pages/home_page.dart';
-
+import 'services/user_service.dart';
+import 'services/post_servicie.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -14,19 +14,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubitApi = ApiService("https://jsonplaceholder.typicode.com/users");
-    final blocApi = ApiService("https://jsonplaceholder.typicode.com/posts");
+    final userService = UserService("https://jsonplaceholder.typicode.com/users");
+    final postService = PostService("https://jsonplaceholder.typicode.com/posts");
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => CubitCubit(cubitApi)..loadData()),
-        BlocProvider(create: (context) => BlocBloc(blocApi)..add(CargarDatosEvento())),
+        BlocProvider(create: (context) => CubitCubit(userService)..loadData()),
+        BlocProvider(create: (context) => BlocBloc(postService)..add(CargarDatosEvento())),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: "Cubit y Bloc Demo",
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: const HomePage(),
+        home: HomePage(),
       ),
     );
   }

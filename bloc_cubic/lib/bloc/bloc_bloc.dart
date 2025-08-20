@@ -1,18 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../models/user_modelo.dart';
-import '../services/api_service.dart';
+import '../models/post_modelo.dart';
+import '../services/post_servicie.dart';
 
 part 'bloc_event.dart';
 part 'bloc_state.dart';
 
 class BlocBloc extends Bloc<Evento, BlocState> {
-  final ApiService apiService;
+  final PostService postService;
 
-  BlocBloc(this.apiService) : super(BlocInitial()) {
+  BlocBloc(this.postService) : super(BlocInitial()) {
     on<CargarDatosEvento>((event, emit) async {
       emit(BlocLoading());
       try {
-        final data = await apiService.fetchData();
+        final data = await postService.fetchPosts();
         emit(BlocLoaded(data));
       } catch (e) {
         emit(BlocError("Error en Bloc: $e"));
